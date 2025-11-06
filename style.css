@@ -1,0 +1,112 @@
+body {
+  background-color: #0a0a0a;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 3em;
+  background: #111;
+  border-bottom: 2px solid #ff003c;
+}
+
+header h1 {
+  color: #ff003c;
+  font-size: 1.5em;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2em;
+  margin: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ff003c;
+}
+
+.hero {
+  text-align: center;
+  padding: 5em 2em;
+  background: linear-gradient(180deg, #111, #0a0a0a);
+}
+
+.cta {
+  background: #ff003c;
+  border: none;
+  color: #fff;
+  padding: 1em 2em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: 0.3s;
+}
+
+.cta:hover {
+  background: #ff335c;
+  box-shadow: 0 0 20px #ff003c;
+}
+
+.products {
+  padding: 3em;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.product {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  width: 250px;
+  padding: 1em;
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #ff003c33;
+}
+
+.product img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.price {
+  color: #ff003c;
+  font-weight: bold;
+  display: block;
+  margin: 0.5em 0;
+}
+
+button {
+  background: #ff003c;
+  color: #fff;
+  border: none;
+  padding: 0.6em 1.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #ff335c;
+}
