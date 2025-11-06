@@ -1,5 +1,5 @@
 body {
-  background-color: #0a0a0a;
+  background: #0a0a0a;
   color: #fff;
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -7,24 +7,27 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #111;
+  border-bottom: 2px solid #ff003c;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1em 3em;
-  background: #111;
-  border-bottom: 2px solid #ff003c;
+  z-index: 10;
 }
 
 header h1 {
   color: #ff003c;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   gap: 2em;
-  margin: 0;
 }
 
 nav a {
@@ -39,72 +42,81 @@ nav a:hover {
 
 .hero {
   text-align: center;
-  padding: 5em 2em;
-  background: linear-gradient(180deg, #111, #0a0a0a);
+  padding: 8em 2em 4em;
+  background: radial-gradient(circle at center, #111, #000);
 }
 
-.cta {
-  background: #ff003c;
-  border: none;
-  color: #fff;
-  padding: 1em 2em;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: 0.3s;
+.hero h2 {
+  color: #ff003c;
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
 }
 
-.cta:hover {
-  background: #ff335c;
-  box-shadow: 0 0 20px #ff003c;
-}
-
-.products {
-  padding: 3em;
-  text-align: center;
-}
-
-.grid {
+.components {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 2em;
-  flex-wrap: wrap;
+  padding: 4em;
 }
 
-.product {
+.bubble {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
   background: #111;
-  border: 1px solid #222;
-  border-radius: 10px;
-  width: 250px;
-  padding: 1em;
+  border: 2px solid #ff003c;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
   transition: 0.3s;
 }
 
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px #ff003c33;
-}
-
-.product img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.price {
-  color: #ff003c;
-  font-weight: bold;
-  display: block;
-  margin: 0.5em 0;
-}
-
-button {
+.bubble:hover {
   background: #ff003c;
   color: #fff;
+  box-shadow: 0 0 25px #ff003c;
+  transform: scale(1.1);
+}
+
+/* Chatbot */
+#chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #111;
+  border: 1px solid #ff003c;
+  border-radius: 10px;
+  width: 280px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em;
+  box-shadow: 0 0 20px #ff003c55;
+}
+
+#chatbot.hidden {
+  display: none;
+}
+
+#chatbot h3 {
+  color: #ff003c;
+  margin-top: 0;
+}
+
+#chat-input {
   border: none;
-  padding: 0.6em 1.5em;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.2s;
+  border-radius: 5px;
+  padding: 0.5em;
+  outline: none;
+}
+
 }
 
 button:hover {
