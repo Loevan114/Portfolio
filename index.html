@@ -1,46 +1,89 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RedCore Gaming - Accueil</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedCore Gaming - PC Gaming Personnalisables</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>RedCore Gaming</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Composants</a></li>
-        <li><a href="#">Panier 🛒</a></li>
-        <li><a href="#" id="chatbot-toggle">Aide 💬</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- En-tête -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>RedCore Gaming</h1>
+            </div>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#personnalisation">Personnalisation</a></li>
+                <li><a href="#equipe">Notre Équipe</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#panier">Panier</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <section class="hero">
-    <h2>Assemble ton PC de rêve.</h2>
-    <p>Choisis chaque composant, découvre les meilleures marques et construis ta machine ultime.</p>
-  </section>
+    <!-- Bannière -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h2>Construisez le PC de vos rêves</h2>
+            <p>Performance, design et personnalisation ultime pour les gamers.</p>
+            <a href="#personnalisation" class="cta-button">Commencer</a>
+        </div>
+    </section>
 
-  <section class="components">
-    <div class="bubble" onclick="location.href='cpu.html'">🧠<br>Processeur</div>
-    <div class="bubble" onclick="location.href='gpu.html'">🎮<br>Carte graphique</div>
-    <div class="bubble" onclick="location.href='motherboard.html'">🔩<br>Carte mère</div>
-    <div class="bubble" onclick="location.href='ram.html'">💾<br>Mémoire RAM</div>
-    <div class="bubble" onclick="location.href='storage.html'">📀<br>Stockage</div>
-    <div class="bubble" onclick="location.href='psu.html'">⚡<br>Alimentation</div>
-    <div class="bubble" onclick="location.href='case.html'">🖥️<br>Boîtier</div>
-  </section>
+    <!-- Personnalisation -->
+    <section id="personnalisation" class="section">
+        <h2>Personnalisez votre PC</h2>
+        <p>Choisissez les composants pour votre machine sur mesure.</p>
+        <div class="composants">
+            <div class="composant" id="composant-processeur">
+                <h3>Processeur</h3>
+                <button class="choisir">Choisir</button>
+            </div>
+            <div class="composant" id="composant-ram">
+                <h3>RAM</h3>
+                <button class="choisir">Choisir</button>
+            </div>
+            <div class="composant" id="composant-carte-graphique">
+                <h3>Carte Graphique</h3>
+                <button class="choisir">Choisir</button>
+            </div>
+        </div>
+    </section>
 
-  <div id="chatbot" class="hidden">
-    <h3>Assistance technique</h3>
-    <div class="messages">
-      <p><strong>Bot:</strong> Salut ! Besoin d’aide pour choisir un composant ?</p>
-    </div>
-    <input type="text" id="chat-input" placeholder="Pose ta question...">
-  </div>
+    <!-- L'équipe -->
+    <section id="equipe" class="section">
+        <h2>Nos Experts</h2>
+        <div class="equipe">
+            <div class="membre">
+                <img src="images/expert1.jpg" alt="Expert 1">
+                <p>Marc - Chef de Projet Assemblage</p>
+            </div>
+            <div class="membre">
+                <img src="images/expert2.jpg" alt="Expert 2">
+                <p>Sophie - Experte en Cooling</p>
+            </div>
+            <div class="membre">
+                <img src="images/expert3.jpg" alt="Expert 3">
+                <p>Thomas - Spécialiste Cartes Graphiques</p>
+            </div>
+            <div class="membre">
+                <img src="images/expert4.jpg" alt="Expert 4">
+                <p>Claire - Responsable Production</p>
+            </div>
+            <div class="membre">
+                <img src="images/expert5.jpg" alt="Expert 5">
+                <p>Luc - Expert en Overclocking</p>
+            </div>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 RedCore Gaming. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
