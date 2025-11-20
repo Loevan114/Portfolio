@@ -1,124 +1,134 @@
+/* Styles généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background: #0a0a0a;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
 }
 
+h1, h2, h3 {
+    color: #ff2a2a;
+}
+
+a {
+    color: #ff2a2a;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* En-tête */
 header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #111;
-  border-bottom: 2px solid #ff003c;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em 3em;
-  z-index: 10;
-}
-
-header h1 {
-  color: #ff003c;
-  font-size: 1.4em;
+    background-color: #111;
+    padding: 20px;
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  gap: 2em;
+    display: flex;
+    justify-content: space-around;
 }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s;
+nav ul li {
+    list-style: none;
 }
 
-nav a:hover {
-  color: #ff003c;
+nav ul li a {
+    font-size: 18px;
+    font-weight: bold;
 }
 
+/* Bannière */
 .hero {
-  text-align: center;
-  padding: 8em 2em 4em;
-  background: radial-gradient(circle at center, #111, #000);
+    background-color: #000;
+    text-align: center;
+    padding: 60px 20px;
 }
 
 .hero h2 {
-  color: #ff003c;
-  font-size: 2.5em;
-  margin-bottom: 0.3em;
+    font-size: 3rem;
 }
 
-.components {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2em;
-  padding: 4em;
+.hero .cta-button {
+    background-color: #ff2a2a;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
-.bubble {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: #111;
-  border: 2px solid #ff003c;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+.hero .cta-button:hover {
+    background-color: #d81c1c;
 }
 
-.bubble:hover {
-  background: #ff003c;
-  color: #fff;
-  box-shadow: 0 0 25px #ff003c;
-  transform: scale(1.1);
+/* Section personnalisations */
+.section {
+    padding: 40px 20px;
+    text-align: center;
 }
 
-/* Chatbot */
-#chatbot {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #111;
-  border: 1px solid #ff003c;
-  border-radius: 10px;
-  width: 280px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1em;
-  box-shadow: 0 0 20px #ff003c55;
+.composants {
+    display: flex;
+    justify-content: space-around;
 }
 
-#chatbot.hidden {
-  display: none;
+.composant {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
-#chatbot h3 {
-  color: #ff003c;
-  margin-top: 0;
+.composant:hover {
+    transform: scale(1.05);
 }
 
-#chat-input {
-  border: none;
-  border-radius: 5px;
-  padding: 0.5em;
-  outline: none;
+.composant button {
+    background-color: #ff2a2a;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }
 
+.composant button:hover {
+    background-color: #d81c1c;
 }
 
-button:hover {
-  background: #ff335c;
+/* Section équipe */
+.equipe {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.membre {
+    text-align: center;
+    width: 200px;
+}
+
+.membre img {
+    width: 100%;
+    border-radius: 50%;
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #111;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
