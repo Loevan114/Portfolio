@@ -1,238 +1,105 @@
 /* ---------------------------------------------------------
-   RESET & BASE
+   ANIMATIONS D’APPARITION DES SECTIONS
 --------------------------------------------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Orbitron", Arial, sans-serif;
-}
+const sections = document.querySelectorAll('.section, .hero');
 
-body {
-    background: #0a0a0b;
-    color: #e6e6e6;
-    line-height: 1.6;
-}
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.3 });
 
-/* Couleurs globales */
-:root {
-    --red: #ff1b1b;
-    --red-glow: 0 0 10px #ff1b1b, 0 0 25px #ff1b1b;
-    --box-dark: #141416;
-}
+sections.forEach(sec => observer.observe(sec));
 
-/* Titres */
-h1, h2, h3 {
-    color: var(--red);
-    text-shadow: var(--red-glow);
-    letter-spacing: 1px;
-}
-
-a {
-    color: var(--red);
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
 
 /* ---------------------------------------------------------
-   HEADER
+   POPUP DE SÉLECTION DES COMPOSANTS
 --------------------------------------------------------- */
-header {
-    background: #0b0b0c;
-    border-bottom: 2px solid var(--red);
-    box-shadow: 0 0 15px #ff1b1b55;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+const composants = {
+    "Processeur (CPU)": ["Intel i5", "Intel i7", "AMD Ryzen 5", "AMD Ryzen 7"],
+    "Mémoire RAM": ["16 Go DDR4", "32 Go DDR4", "32 Go DDR5", "64 Go DDR5"],
+    "Carte Graphique (GPU)": ["RTX 4060", "RTX 4070", "RTX 4080", "RX 7800XT"],
+    "Carte Mère": ["B760 DDR4", "Z790 DDR5", "X670E", "B650"],
+    "Boîtier PC": ["NZXT H510", "Corsair 4000D", "Lian Li Lancool", "BeQuiet 500DX"],
+    "Alimentation (PSU)": ["650W Gold", "750W Gold", "850W Platinum", "1000W Titanium"],
+    "Stockage": ["SSD 1To NVMe", "SSD 2To NVMe", "SSD 4To SATA", "HDD 4To"]
+};
+
+// Création dynamique d’un popup
+function createPopup(titre, options) {
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
+
+    popup.innerHTML = `
+        <div class="popup-content">
+            <h2>Sélectionner : ${titre}</h2>
+            <ul>
+                ${options.map(opt => `<li class="option">${opt}</li>`).join("")}
+            </ul>
+            <button class="close-popup">Fermer</button>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    // Option sélectionnée
+    popup.querySelectorAll(".option").forEach(option => {
+        option.addEventListener("click", () => {
+            addToCart(titre, option.textContent);
+            popup.remove();
+        });
+    });
+
+    // Fermeture
+    popup.querySelector(".close-popup").addEventListener("click", () => {
+        popup.remove();
+    });
 }
 
-nav {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav .logo h1 {
-    font-size: 28px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-
-nav ul li a {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    transition: 0.3s;
-    position: relative;
-}
-
-nav ul li a::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--red);
-    transition: 0.3s;
-}
-
-nav ul li a:hover::after {
-    width: 100%;
-}
 
 /* ---------------------------------------------------------
-   HERO
+   GESTION DU PANIER (localStorage)
 --------------------------------------------------------- */
-.hero {
-    padding: 100px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, #0a0a0b, #121214);
+let panier = JSON.parse(localStorage.getItem("panier")) || {};
+
+function addToCart(categorie, item) {
+    panier[categorie] = item;
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+    alert(`${item} ajouté à votre configuration`);
 }
 
-.hero h2 {
-    font-size: 3.2rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin: 20px 0;
-    color: #cccccc;
-}
-
-.cta-button {
-    background: var(--red);
-    color: white;
-    padding: 12px 35px;
-    font-size: 1.3rem;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    text-transform: uppercase;
-    transition: 0.3s;
-    box-shadow: var(--red-glow);
-}
-.cta-button:hover {
-    transform: scale(1.08);
-    background: #e00000;
-}
 
 /* ---------------------------------------------------------
-   SECTIONS
+   OUVERTURE DES POPUPS SUR CLICK
 --------------------------------------------------------- */
-.section {
-    padding: 60px 30px;
-    text-align: center;
-}
+document.querySelectorAll(".composant").forEach(comp => {
+    const title = comp.querySelector("h3").textContent;
+    const btn = comp.querySelector(".choisir");
 
-.section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
+    btn.addEventListener("click", () => {
+        createPopup(title, composants[title]);
+    });
+});
 
-.section p {
-    color: #bbbbbb;
-}
 
 /* ---------------------------------------------------------
-   COMPOSANTS
+   ANIMATION GLOW SUR LES BOUTONS
 --------------------------------------------------------- */
-.composants {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
+document.querySelectorAll(".choisir, .cta-button").forEach(btn => {
+    btn.addEventListener("mouseenter", () => {
+        btn.style.boxShadow = "0 0 15px #ff1b1b";
+    });
+    btn.addEventListener("mouseleave", () => {
+        btn.style.boxShadow = "none";
+    });
+});
 
-.composant {
-    background: var(--box-dark);
-    width: 260px;
-    padding: 25px 20px;
-    border-radius: 12px;
-    border: 1px solid #2a2a2d;
-    transition: 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 0 10px #000;
-}
-
-.composant:hover {
-    transform: translateY(-8px);
-    border-color: var(--red);
-    box-shadow: var(--red-glow);
-}
-
-.composant button {
-    background: var(--red);
-    border: none;
-    padding: 10px 18px;
-    color: white;
-    margin-top: 15px;
-    border-radius: 6px;
-    transition: 0.3s;
-    cursor: pointer;
-    width: 100%;
-}
-
-.composant button:hover {
-    background: #d10000;
-    transform: scale(1.05);
-}
-
-/* ---------------------------------------------------------
-   ÉQUIPE
---------------------------------------------------------- */
-.equipe {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 35px;
-    margin-top: 30px;
-}
-
-.membre {
-    background: var(--box-dark);
-    padding: 20px;
-    width: 230px;
-    border-radius: 12px;
-    box-shadow: 0 0 8px #000;
-    transition: 0.3s;
-    text-align: center;
-}
-
-.membre:hover {
-    transform: translateY(-8px);
-    border: 1px solid var(--red);
-    box-shadow: var(--red-glow);
-}
-
-.membre img {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    border: 2px solid var(--red);
-    object-fit: cover;
-    margin-bottom: 12px;
-}
-
-.role {
-    color: var(--red);
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-/* ---------------------------------------------------------
+/* ============================
    ANIMATION D’APPARITION
---------------------------------------------------------- */
+============================ */
 .section, .hero {
     opacity: 0;
     transform: translateY(30px);
@@ -244,9 +111,9 @@ nav ul li a:hover::after {
     transform: translateY(0);
 }
 
-/* ---------------------------------------------------------
-   POPUP DE SÉLECTION COMPOSANT
---------------------------------------------------------- */
+/* ============================
+   POPUP DE SÉLECTION
+============================ */
 .popup {
     position: fixed;
     top: 0;
@@ -267,7 +134,7 @@ nav ul li a:hover::after {
     border-radius: 12px;
     width: 350px;
     text-align: center;
-    border: 2px solid var(--red);
+    border: 2px solid #ff1b1b;
     box-shadow: 0 0 25px #ff1b1b;
 }
 
@@ -291,13 +158,13 @@ nav ul li a:hover::after {
 }
 
 .popup-content .option:hover {
-    background: var(--red);
+    background: #ff1b1b;
     color: white;
     transform: scale(1.05);
 }
 
 .close-popup {
-    background: var(--red);
+    background: #ff1b1b;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -309,16 +176,4 @@ nav ul li a:hover::after {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
-
-/* ---------------------------------------------------------
-   FOOTER
---------------------------------------------------------- */
-footer {
-    text-align: center;
-    background-color: #111;
-    padding: 20px;
-    color: #888;
-    font-size: 0.9rem;
-    margin-top: 60px;
 }
