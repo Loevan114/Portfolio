@@ -1,26 +1,22 @@
-/* Ajout des images des composants */
-.composant img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    height: 150px;
-    object-fit: cover;
-}
+/* Basic reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Panier */
-#panier-content {
-    margin-top: 20px;
-    background: #111;
-    padding: 20px;
-    border-radius: 10px;
-    min-height: 120px;
-}
-#vider-panier {
-    margin-top: 15px;
-    padding: 10px 20px;
-    border: none;
-    background: var(--red);
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-}
+body { background: #0a0a0b; color: #e6e6e6; font-family: Arial; }
+
+header { background: #111; padding: 20px; border-bottom: 2px solid #ff1b1b; }
+nav ul { list-style: none; display: flex; gap: 25px; }
+nav a { color: white; text-decoration: none; }
+
+.hero { padding: 80px 20px; text-align: center; background: black; }
+.cta-button { background: #ff1b1b; padding: 12px 25px; border: none; cursor: pointer; color: white; }
+
+.section { padding: 60px 20px; text-align: center; }
+
+.composants { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.composant { width: 220px; background: #1b1b1d; padding: 20px; border-radius: 10px; }
+.composant img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+
+.equipe { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.membre img { width: 130px; height: 130px; border-radius: 50%; }
+
+#panier-liste li { margin: 5px 0; }
