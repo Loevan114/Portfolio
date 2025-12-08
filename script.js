@@ -1,57 +1,84 @@
-// Composants disponibles
+/* =====================
+   Animations IntersectionObserver
+===================== */
+
+const sections = document.querySelectorAll('.section, .hero');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.3 });
+
+sections.forEach(sec => observer.observe(sec));
+
+
+/* =====================
+   Liste des composants
+===================== */
+
 const composants = {
     "Processeur (CPU)": ["Intel i5", "Intel i7", "Ryzen 5", "Ryzen 7"],
-    "Mémoire RAM": ["16 Go DDR4", "32 Go DDR4", "32 Go DDR5"],
-    "Carte Graphique (GPU)": ["RTX 4060", "RTX 4070", "RTX 4080"],
-    "Carte Mère": ["B760", "Z790", "X670E"],
-    "Boîtier PC": ["NZXT H510", "Corsair 4000D"],
-    "Alimentation (PSU)": ["650W Gold", "750W Gold"],
-    "Stockage": ["SSD 1To", "SSD 2To"]
+    "Mémoire RAM": ["16 Go DDR4", "32 Go DDR4", "32 Go DDR5", "64 Go DDR5"],
+    "Carte Graphique (GPU)": ["RTX 4060", "RTX 4070", "RTX 4080", "RX 7800XT"],
+    "Carte Mère": ["B760 DDR4", "Z790 DDR5", "X670E", "B650"],
+    "Boîtier PC": ["NZXT H510", "Corsair 4000D", "Lian Li Lancool", "BeQuiet 500DX"],
+    "Alimentation (PSU)": ["650W Gold", "750W Gold", "850W Platinum", "1000W Titanium"],
+    "Stockage": ["SSD 1To NVMe", "SSD 2To NVMe", "SSD 4To SATA", "HDD 4To"]
 };
+
+
+/* =====================
+   Gestion Panier
+===================== */
 
 let panier = JSON.parse(localStorage.getItem("panier")) || {};
 
-function updateCartDisplay() {
-    const ul = document.getElementById("panier-liste");
-    ul.innerHTML = "";
+function addToCart(categorie) {
+
+    // Ajout automatique : on sélectionne le premier élément de la liste
+    const choixAuto = composants[categorie][0];
+
+    panier[categorie] = choixAuto;
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+    updatePanier();
+}
+
+function updatePanier() {
+    const div = document.getElementById("panier-content");
+    div.innerHTML = "";
+
+    if (Object.keys(panier).length === 0) {
+        div.innerHTML = "<p>Aucun composant sélectionné.</p>";
+        return;
+    }
 
     Object.entries(panier).forEach(([cat, item]) => {
-        const li = document.createElement("li");
-        li.textContent = `${cat} : ${item}`;
-        ul.appendChild(li);
+        const line = document.createElement("p");
+        line.textContent = `${cat} : ${item}`;
+        div.appendChild(line);
     });
 }
 
-function addToCart(categorie, item) {
-    panier[categorie] = item;
-    localStorage.setItem("panier", JSON.stringify(panier));
-    updateCartDisplay();
-}
+document.getElementById("viderPanier").addEventListener("click", () => {
+    panier = {};
+    localStorage.removeItem("panier");
+    updatePanier();
+});
 
-function createPopup(titre, options) {
-    const popup = document.createElement("div");
-    popup.classList.add("popup");
+updatePanier();
 
-    popup.innerHTML = `
-        <div class="popup-content">
-            <h2>Sélectionner : ${titre}</h2>
-            <ul>
-                ${options.map(o => `<li class="option">${o}</li>`).join("")}
-            </ul>
-            <button class="close-popup">Fermer</button>
-        </div>`;
 
-    document.body.appendChild(popup);
+/* =====================
+   Ajout direct au clic
+===================== */
 
-    popup.querySelectorAll(".option").forEach(opt => {
-        opt.addEventListener("click", () => {
-            addToCart(titre, opt.textContent);
-            popup.remove();
-        });
+document.querySelectorAll(".composant").forEach(comp => {
+    const title = comp.querySelector("h3").textContent;
+    comp.querySelector(".choisir").addEventListener("click", () => {
+        addToCart(title);
     });
-
-    popup.querySelector(".close-popup").addEventListener("click", () => popup.remove());
-}
-
-// Activation des boutons Choisir
-```
+});
