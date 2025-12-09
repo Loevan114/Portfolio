@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RedCore Gaming - PC Gaming Personnalisables</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Simple style pour voir le panier */
+        .section { padding: 50px 20px; }
+        .composants { display: flex; flex-wrap: wrap; gap: 20px; }
+        .composant { border: 1px solid #ccc; padding: 10px; width: 200px; text-align: center; }
+        .choisir { margin-top: 10px; padding: 5px 10px; cursor: pointer; }
+        #panier-content { border: 1px solid #999; padding: 10px; min-height: 50px; margin-top: 10px; }
+        .vider-btn { margin-top: 10px; padding: 5px 10px; cursor: pointer; }
+    </style>
 </head>
 <body>
+
     <!-- En-tête -->
     <header>
         <nav>
@@ -17,8 +27,8 @@
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#personnalisation">Personnalisation</a></li>
                 <li><a href="#equipe">Notre Équipe</a></li>
-                <li><a href="#contact">Contact</a></li>
                 <li><a href="#panier">Panier</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -27,7 +37,7 @@
     <section id="accueil" class="hero">
         <div class="hero-content">
             <h2>Dominez le jeu avec une machine taillée pour la victoire</h2>
-            <p>PC sur mesure assemblé par une équipe d’élite : performance, style et puissance.</p>
+            <p>Chez RedCore Gaming, construisez un PC sur-mesure assemblé par une équipe d’élite.</p>
             <a href="#personnalisation" class="cta-button">Commencer</a>
         </div>
     </section>
@@ -35,102 +45,89 @@
     <!-- Personnalisation -->
     <section id="personnalisation" class="section">
         <h2>Personnalisez votre PC</h2>
-        <p>Choisissez chaque composant pour créer une machine unique et puissante.</p>
+        <p>Choisissez chaque composant pour créer une machine unique.</p>
 
         <div class="composants">
+
             <div class="composant">
-                <img src="images/cpu.jpg" />
+                <img src="images/cpu.jpg" alt="CPU" width="150">
                 <h3>Processeur (CPU)</h3>
+                <p>Puissance brute et rapidité.</p>
                 <button class="choisir">Choisir</button>
             </div>
+
             <div class="composant">
-                <img src="images/ram.jpg" />
+                <img src="images/ram.jpg" alt="RAM" width="150">
                 <h3>Mémoire RAM</h3>
+                <p>Fluidité extrême pour vos jeux.</p>
                 <button class="choisir">Choisir</button>
             </div>
+
             <div class="composant">
-                <img src="images/gpu.jpg" />
+                <img src="images/gpu.jpg" alt="GPU" width="150">
                 <h3>Carte Graphique (GPU)</h3>
+                <p>Des performances visuelles incroyables.</p>
                 <button class="choisir">Choisir</button>
             </div>
+
             <div class="composant">
-                <img src="images/motherboard.jpg" />
+                <img src="images/motherboard.jpg" alt="Carte Mère" width="150">
                 <h3>Carte Mère</h3>
+                <p>La base de votre configuration.</p>
                 <button class="choisir">Choisir</button>
             </div>
+
             <div class="composant">
-                <img src="images/case.jpg" />
+                <img src="images/case.jpg" alt="Boitier PC" width="150">
                 <h3>Boîtier PC</h3>
+                <p>Design & airflow optimal.</p>
                 <button class="choisir">Choisir</button>
             </div>
+
             <div class="composant">
-                <img src="images/psu.jpg" />
+                <img src="images/psu.jpg" alt="Alimentation" width="150">
                 <h3>Alimentation (PSU)</h3>
+                <p>Une puissance stable.</p>
                 <button class="choisir">Choisir</button>
             </div>
+
             <div class="composant">
-                <img src="images/ssd.jpg" />
+                <img src="images/ssd.jpg" alt="Stockage" width="150">
                 <h3>Stockage</h3>
+                <p>Rapidité ou capacité, à vous de choisir.</p>
                 <button class="choisir">Choisir</button>
             </div>
+
         </div>
     </section>
 
     <!-- Panier -->
     <section id="panier" class="section">
         <h2>Votre Panier</h2>
-        <ul id="panier-liste"></ul>
-        <button id="vider-panier" class="cta-button">Vider le panier</button>
+        <p>Voici les composants que vous avez sélectionnés :</p>
+        <div id="panier-content"></div>
+        <button id="viderPanier" class="vider-btn">Vider le Panier</button>
     </section>
 
-    <!-- L'équipe -->
+    <!-- Équipe -->
     <section id="equipe" class="section">
         <h2>Nos Experts du Hardware</h2>
-        <div class="equipe">
-            <div class="membre">
-                <img src="images/marc.jpg" />
-                <h3>Marc</h3>
-                <p class="role">Chef de Projet Assemblage</p>
-            </div>
-            <div class="membre">
-                <img src="images/sophie.jpg" />
-                <h3>Sophie</h3>
-                <p class="role">Experte Cooling</p>
-            </div>
-            <div class="membre">
-                <img src="images/thomas.jpg" />
-                <h3>Thomas</h3>
-                <p class="role">Spécialiste GPU</p>
-            </div>
-            <div class="membre">
-                <img src="images/claire.jpg" />
-                <h3>Claire</h3>
-                <p class="role">Responsable Production</p>
-            </div>
-            <div class="membre">
-                <img src="images/luc.jpg" />
-                <h3>Luc</h3>
-                <p class="role">Expert Overclocking</p>
-            </div>
-        </div>
+        <p>Notre équipe d’élite est là pour assembler votre PC.</p>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>Email : contact@redcoregaming.com</p>
+        <h2>Contactez-nous</h2>
+        <p>Une question ? Contactez notre équipe :</p>
+        <p>📧 Email : <strong>support@redcore-gaming.fr</strong></p>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 RedCore Gaming - Tous droits réservés</p>
+        <p>&copy; 2025 RedCore Gaming. Tous droits réservés.</p>
     </footer>
 
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-    // Place tout le contenu de ton script.js ici
-});
-</script>
-
+    <!-- Script -->
+    <script src="script.js"></script>
 </body>
 </html>
-`
